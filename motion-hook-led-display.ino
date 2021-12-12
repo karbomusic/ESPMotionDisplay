@@ -136,12 +136,4 @@ void checkForUpdate()
   }
   lastMotionEvent = millis();
 }
-/*
-  PUT http://hue.karywall.com:12717/api/IgniteUser/groups/4/action HTTP/1.1
-  Content-Length: 12
-  Content-Type: text/plain; charset=utf-8
-  Host: hue.karywall.com:12717
-  Connection: Keep-Alive
-  Pragma: no-cache
-  {"on":false}
-*/
+
