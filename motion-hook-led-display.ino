@@ -109,6 +109,17 @@ void loop() {
   digitalWrite(redPin, LOW);
   kitchenTriggered = false;
  }
+
+   if(greatRoomTriggered)
+ {
+  Serial.println("Kitchen motion triggered!");
+  digitalWrite(redPin, HIGH);
+  digitalWrite(greenPin, HIGH);
+  delay(1000);
+  digitalWrite(redPin, LOW);
+  digitalWrite(greenPin, LOW);
+  kitchenTriggered = false;
+ }
 }
 
 void checkForUpdate()
@@ -128,6 +139,6 @@ void checkForUpdate()
       Serial.println("Update ok."); // may not called we reboot the ESP
       break;
   }
-  lastMotionEvent = millis();
+
 }
 

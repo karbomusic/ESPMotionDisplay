@@ -8,6 +8,7 @@ ESP8266WebServer server(80);
 bool frontyardTriggered = false;
 bool kitchenTriggered = false;
 bool mediaTriggered = false;
+bool greatRoomTriggered = false;
 
 void handleRoot() {
  //digitalWrite(led, 1);
@@ -52,7 +53,12 @@ void initWebServer() {
 
   server.on("/media", []() {
     mediaTriggered = true;
-    server.send(200, "text/plain", "media triggered.");
+    server.send(200, "text/plain", "Media room triggered.");
+  });
+
+  server.on("/greatroom", []() {
+    greatRoomTriggered = true;
+    server.send(200, "text/plain", "Great room triggered.");
   });
   
   server.onNotFound(handleNotFound);
