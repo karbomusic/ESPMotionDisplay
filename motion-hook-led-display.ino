@@ -1,5 +1,4 @@
-// Group 4 = Media room
-// Group 2 = Studio
+
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
@@ -44,7 +43,10 @@ void setup() {
   for (uint8_t t = 4; t > 0; t--) {
     s.printf("[SETUP] WAIT %d...\n", t);
     s.flush();
-    delay(1000);
+    digitalWrite(bluePin, HIGH);
+    delay(250);
+    digitalWrite(bluePin, LOW);
+    delay(250);
   }
 
   Serial.println("\nConnecting to WiFi...\n");
@@ -73,7 +75,10 @@ void setup() {
   for (int i = 5; i > 0; i--)
   {
     Serial.print((String)i + " ");
-    delay(1000);
+    digitalWrite(greenPin, HIGH);
+    delay(500);
+    digitalWrite(greenPin, LOW);
+    delay(500);
   }
 
   Serial.println("Waiting for motion...");
@@ -86,44 +91,63 @@ void loop() {
  if(frontyardTriggered)
  {
   Serial.println("Front yard motion triggered!");
-  digitalWrite(greenPin, HIGH);
-  delay(1000);
-  digitalWrite(greenPin, LOW);
+  for(int i=0;i<10;i++)
+  {
+    digitalWrite(greenPin, HIGH);
+    delay(20);
+    digitalWrite(greenPin, LOW);
+    delay(20);
+  }
   frontyardTriggered = false;
  }
 
  if(mediaTriggered)
  {
   Serial.println("Media room motion triggered!");
-  digitalWrite(bluePin, HIGH);
-  delay(1000);
-  digitalWrite(bluePin, LOW);
+  for(int i=0;i<10;i++)
+  {
+    digitalWrite(bluePin, HIGH);
+    delay(20);
+    digitalWrite(bluePin, LOW);
+    delay(20);
+  }
   mediaTriggered = false;
  }
 
   if(kitchenTriggered)
  {
   Serial.println("Kitchen motion triggered!");
-  digitalWrite(redPin, HIGH);
-  delay(1000);
-  digitalWrite(redPin, LOW);
+  for(int i=0;i<10;i++)
+  {
+    digitalWrite(redPin, HIGH);
+    delay(20);
+    digitalWrite(redPin, LOW);
+    delay(20);
+  }
   kitchenTriggered = false;
  }
 
-   if(greatRoomTriggered)
+ if(greatRoomTriggered)
  {
-  Serial.println("Kitchen motion triggered!");
-  digitalWrite(redPin, HIGH);
-  digitalWrite(greenPin, HIGH);
-  delay(1000);
-  digitalWrite(redPin, LOW);
-  digitalWrite(greenPin, LOW);
-  kitchenTriggered = false;
+  Serial.println("Great room motion triggered!");
+  for(int i=0;i<10;i++)
+  {
+    digitalWrite(redPin, HIGH);
+    digitalWrite(greenPin, HIGH);
+    delay(20);
+    digitalWrite(redPin, LOW);
+    digitalWrite(greenPin, LOW);
+    delay(20);
+  }
+
+  greatRoomTriggered = false;
  }
 }
 
 void checkForUpdate()
 {
+  //not used yet for this project
+  return;
   Serial.println("Current Version: [" + softwareVersion + "] \nChecking for update...\n");
   t_httpUpdate_return ret = ESPhttpUpdate.update("192.168.2.101", 80, "/themothership/api/admin/UpdateESP8266OTA?softwareVersion=" + softwareVersion + "&deviceFamily=" + deviceFamily);
 
