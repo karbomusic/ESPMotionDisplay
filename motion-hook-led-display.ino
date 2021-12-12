@@ -15,20 +15,14 @@ ESP8266WiFiMulti WiFiMulti;
 const char* ssid     = "IOTNET2G";
 const char* password = "creekvalley124";
 const char* host = "192.168.2.101";
-const String url = "http://192.168.2.56/api/IgniteUser/groups/4/action";
-const String softwareVersion = "04-10-2018";                                // last update
+
+const String softwareVersion = "12-12-2021";                                // last update
 const String hostName = "ESPMotion-Display";                                // name as seen on network
 const String deviceFamily  = "MOTIONDISPLAY";
-String jsonToken = "{""\"on\":<value>}";
-String json;
 
 const int redPin = 14;
 const int bluePin = 12;
 const int greenPin = 13;
-int lowHigh;
-
-const long noMotionDuration = 60000 * 20;                                    // How long without motion before turning off -> minute * value = minutes
-unsigned long lastMotionEvent = millis();
 
 void setup() {
 
