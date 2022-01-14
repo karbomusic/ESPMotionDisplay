@@ -11,8 +11,8 @@
 
 ESP8266WiFiMulti WiFiMulti;
 
-const char* ssid     = "IOTNET2G";
-const char* password = "creekvalley124";
+const char* ssid     = "YOURSSID";
+const char* password = "YOURPASSWORD";
 const char* host = "192.168.2.101";
 
 const String softwareVersion = "12-12-2021";                                // last update
